@@ -14,6 +14,7 @@ library(ggmap)
 library(dplyr)
 library(RColorBrewer)
 library(leaflet)
+library(plotly)
 
 
 
@@ -43,32 +44,38 @@ select <- function(category, council, depth) {
   return(selectdf)
 }
 
-
+select_by_type <- function(coral_category = "stony coral") {
+  if (is.null(coral_category)){coral_category="stony coral"} 
+  category_index = which(df$VernacularNameCategory%in%coral_category)
+  select_by_df <- df[category_index, 
+                     c("VernacularNameCategory", "DepthInMeters", "Condition", "FishCouncilRegion")]
+  return(select_by_df)
+}
 
 ######################################## Server Begins ########################################
 shinyServer(function(input, output, session) {
   
   ### map begins
-    output$map <- renderLeaflet({
-    selectdf <- select(input$category, input$council, input$depth)
-    leaflet() %>%
-      addTiles() %>%
-      addCircleMarkers(selectdf$longitude, selectdf$latitude, color = (selectdf$colors),
-                       fillOpacity = 1, radius = 2.5, stroke = FALSE,
+  output$map <- renderLeaflet({
+  selectdf <- select(input$category, input$council, input$depth)
+  leaflet() %>%
+    addTiles() %>%
+    addCircleMarkers(selectdf$longitude, selectdf$latitude, color = (selectdf$colors),
+                     fillOpacity = 1, radius = 2.5, stroke = FALSE,
                        # pop up corals information
-                       popup = paste('<strong> Catalog Number </strong>:', selectdf$CatalogNumber, '<br/>', 
-                                     '<strong> Name (scientific name) </strong>: ', selectdf$ScientificName, '<br/>',
-                                     '<strong> Observation Date </strong>:', selectdf$ObservationDate, '<br/>',
-                                     '<strong> Depth (m) </strong>:', selectdf$DepthInMeters,'<br/>',
-                                     '<strong> Class (sub class) </strong>:', selectdf$Class,'(',selectdf$Subclass,')','<br/>',
-                                     '<strong> Position (lat lon) </strong>:', selectdf$latitude,selectdf$longitude, '<br/>',
-                                     '<strong> Location </strong>:', selectdf$Locality, '<br/>',
-                                     '<strong> Condition </strong>:', selectdf$Condition,'<br/>',
-                                     '<strong> Data Provider </strong>:', selectdf$DataProvider,'<br/>',
-                                     '<strong> Website </strong>:', a(selectdf$Website, href=selectdf$Website), '<br/>')) %>%
-      addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
-      addProviderTiles(providers$Esri.OceanBasemap)%>%
-      setView(lat = 28, lng = -100, zoom = 3)
+                     popup = paste('<strong> Catalog Number </strong>:', selectdf$CatalogNumber, '<br/>', 
+                                   '<strong> Name (scientific name) </strong>: ', selectdf$ScientificName, '<br/>',
+                                   '<strong> Observation Date </strong>:', selectdf$ObservationDate, '<br/>',
+                                   '<strong> Depth (m) </strong>:', selectdf$DepthInMeters,'<br/>',
+                                   '<strong> Class (sub class) </strong>:', selectdf$Class,'(',selectdf$Subclass,')','<br/>',
+                                   '<strong> Position (lat lon) </strong>:', selectdf$latitude,selectdf$longitude, '<br/>',
+                                   '<strong> Location </strong>:', selectdf$Locality, '<br/>',
+                                   '<strong> Condition </strong>:', selectdf$Condition,'<br/>',
+                                   '<strong> Data Provider </strong>:', selectdf$DataProvider,'<br/>',
+                                   '<strong> Website </strong>:', a(selectdf$Website, href=selectdf$Website), '<br/>')) %>%
+    addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
+    addProviderTiles(providers$Esri.OceanBasemap)%>%
+    setView(lat = 28, lng = -100, zoom = 3)
   })
   
   # select all/clear all corals categories
@@ -93,6 +100,11 @@ shinyServer(function(input, output, session) {
   ### map ends
   
   ### stat begins
-  
+  output$plot_3d <- renderPlotly({
+    select_by_df <- select_by_type(input$coral_category)
+    p <- plot_ly(type = "scatter3d", mode = "markers", showlegend = TRUE) %>%
+         add_trace(p, x = ~DepthInMeters, y = ~Condition, z = ~FishCouncilRegion,
+                   data = select_by_df)
+  })
   ### stat ends
 })
