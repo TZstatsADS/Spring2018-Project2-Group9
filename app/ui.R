@@ -1,6 +1,6 @@
 ####################################################################################################
 #####################        Begin Install Packages And Load Libraries         #####################
-packages.used <- c("shiny", "dplyr", "RColorBrewer", "leaflet", "plotly")
+packages.used <- c("shiny", "dplyr", "RColorBrewer", "leaflet", "plotly", "plotrix")
 
 # Check packages that need to be installed.
 packages.needed <- setdiff(packages.used, 
@@ -16,6 +16,8 @@ library(dplyr)
 library(RColorBrewer)
 library(leaflet)
 library(plotly)
+library(plotrix)
+
 #####################          END Install Packages And Load Libraries         #####################
 ####################################################################################################
 
@@ -175,51 +177,84 @@ shinyUI(navbarPage(
     ################################################################################################ 
     #####################                   BEGIN MAP TAB                        ###################      
     tabPanel("MAP", div(id="canvas"), 
-        #map
-        leafletOutput("map", width="100%", height = "600px"),
-        
-        #filter
-        absolutePanel(id = "Corals", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
-                      top = "auto", left = "auto", right = 176, bottom = 180, 
-                      width = 155, height = "auto",
-                      checkboxGroupInput("category", label = h4("Category"), 
-                                         choices = category_choices, selected = category_choices),
-                      actionButton("select_corals", "Select All"),
-                      actionButton("clear_corals", "Clear All")
-        ),
-        absolutePanel(id = "Corals", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
-                      top = "auto", left = "auto", right = 20, bottom = 180, 
-                      width = 155, height = "auto",
-                      checkboxGroupInput("council", label = h4("Council"), 
-                                         choices = council_choices, selected = council_choices),
-                      actionButton("select_councils", "Select All"),
-                      actionButton("clear_councils", "Clear All")
-        ),
-        absolutePanel(id = "Corals", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
-                      top = "auto", left = "auto", right = 20, bottom = 56, 
-                      width = 310, height = "auto",
-                      sliderInput("depth", label = h4("Depth (m)"), min = 0, max = 5000, value = c(0,5000))
-        ),
-        absolutePanel(id = "Corals", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
-                      top = 500, left = 20, right = "auto", bottom = "auto", width = 310, height = "auto",
-                      textInput("number", "CatalogNumber"),
-                      verbatimTextOutput("error")
-        )
+             
+             # map
+             leafletOutput("map", width="100%", height = "600px"),
+             
+             # filter
+             absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
+                           fixed = TRUE, draggable = TRUE,
+                           top = "auto", left = "auto", right = 176, bottom = 185, width = 155, height = 290,
+                           checkboxGroupInput("category", label = h4("Category"), 
+                                              choices = category_choices, selected = category_choices),
+                           actionButton("select_corals", "Select All",
+                                        style = "height: 25px;
+                                        width: 66px;
+                                        font-size: 11px;
+                                        text-align: center"),
+                           actionButton("clear_corals", "Clear All",
+                                        style = "height: 25px;
+                                        width: 66px;
+                                        font-size: 11px;
+                                        text-align: center")
+             ),
+             
+             absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
+                           fixed = TRUE, draggable = TRUE,
+                           top = "auto", left = "auto", right = 20, bottom = 185, width = 155, height = 290,
+                           checkboxGroupInput("council", label = h4("Council"), 
+                                              choices = council_choices, selected = council_choices),
+                           actionButton("select_councils", "Select All",
+                                        style = "height: 25px;
+                                        width: 66px;
+                                        font-size: 11px;
+                                        text-align: center"),
+                           actionButton("clear_councils", "Clear All",
+                                        style = "height: 25px;
+                                        width: 66px;
+                                        font-size: 11px;
+                                        text-align: center")
+             ),
+             
+             absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
+                           fixed = TRUE, draggable = TRUE,
+                           top = "auto", left = "auto", right = 20, bottom = 65, width = 311, height = 120,
+                           sliderInput("depth", label = h5("Depth (m)"),min = 0, max = 5000, value = c(0,4000))
+             ),
+             
+             absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
+                           fixed = TRUE, draggable = TRUE,
+                           top = "auto", left = "auto", right = 20, bottom = 525, width = 311, height = 70,
+                           textInput("number", "CatalogNumber"),
+                           verbatimTextOutput("error", placeholder = TRUE)
+             )
     ),
     #####################                     END MAP TAB                        ###################      
     ################################################################################################ 
     
     ################################################################################################ 
     #####################                BEGIN STATISTICS TAB                    ###################      
-    tabPanel("STATISTICS", div(id="canvas"), 
-        plotlyOutput("plot_3d", width = "100%", height = "500px"),
-        absolutePanel(id = "Corals2", fixed = TRUE, draggable = TRUE,
-                      top = 80, left = 20, right = "auto", bottom = "auto", 
-                      width = 150, height = "auto",
-                      selectInput("coral_category", label = h5("Coral Category"), 
-                                  choices = category_choices, selected = category_choices)
-        )              
-    )         
+    ###
+    tabPanel("Statistics", div(id="canvas"),
+             tabsetPanel(
+               tabPanel( "Overall", plotlyOutput("overall", width = "100%", height = "600px")),
+               tabPanel( "Depth",
+                         sidebarPanel(fixed = TRUE, draggable = TRUE,
+                                      top = 80, left = 20, right = "auto", bottom = "auto", width = 100, height = "auto",
+                                      selectInput("category_1", label = "Coral Category",
+                                                  choices = category_choices, selected = category_choices),
+                                      plotOutput("hist", width = "100%", height = "500px"))
+               ),
+               tabPanel("Pie",
+                        sidebarPanel(fixed = TRUE, draggable = TRUE,
+                                     top = 80, left = 20, right = "auto", bottom = "auto", width = 100, height = "auto",
+                                     selectInput("category_2", label = "Coral Category", 
+                                                 choices = category_choices, selected = category_choices),
+                                     plotOutput("pie", width = "100%", height = "500px")
+                        )
+               )
+             )
+    )        
     #####################                  END STATISTICS TAB                    ###################      
     ################################################################################################     
     

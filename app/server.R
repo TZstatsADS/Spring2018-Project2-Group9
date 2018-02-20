@@ -1,6 +1,6 @@
 ####################################################################################################
 #####################        Begin Install Packages And Load Libraries         #####################
-packages.used <- c("shiny", "dplyr", "RColorBrewer", "leaflet", "plotly")
+packages.used <- c("shiny", "dplyr", "RColorBrewer", "leaflet", "plotly", "plotrix")
 
 # Check packages that need to be installed.
 packages.needed <- setdiff(packages.used, 
@@ -17,6 +17,8 @@ library(dplyr)
 library(RColorBrewer)
 library(leaflet)
 library(plotly)
+library(plotrix)
+
 #####################          END Install Packages And Load Libraries         #####################
 ####################################################################################################
 
@@ -617,9 +619,11 @@ shinyServer(function(input, output, session) {
                          '<strong> Depth (m) </strong>:', selectdf$DepthInMeters,'<br/>',
                          '<strong> Condition </strong>:', selectdf$Condition,'<br/>',
                          '<strong> Observation Date </strong>:', selectdf$ObservationDate, '<br/>',
-                         '<strong> Data Provider </strong>:', selectdf$DataProvider,'<br/>',
-                         '<img src = ', selectdf$ImageURL, 'height = "100" width = "100" >')
-      
+                         '<strong> Data Provider </strong>:', selectdf$DataProvider,'<br/>')
+      image_index <- which(!is.na(selectdf$ImageURL))  
+      popupInfo[image_index] <- paste(popupInfo[image_index],
+                                      '<img src = ', selectdf[image_index,]$ImageURL, 'height = "100" width = "100" >')
+
       if (flag == 0){
         output$error <- renderPrint({invisible(NULL)})
         leaflet() %>%
@@ -627,7 +631,8 @@ shinyServer(function(input, output, session) {
           addCircleMarkers(as.numeric(selectdf$longitude), as.numeric(selectdf$latitude), color = (selectdf$colors),
                            fillOpacity = 1, radius = 2.5, stroke = FALSE,
                            popup = popupInfo) %>%
-          addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
+          addLegend("topleft", colors=colors.pal, labels=sort(category_level),
+                    title = "Coral Category") %>%          
           addProviderTiles(providers$Esri.OceanBasemap)%>%
           setView(lat = 30, lng = -100, zoom = 3)
         
@@ -640,7 +645,8 @@ shinyServer(function(input, output, session) {
           addCircleMarkers(as.numeric(selectdf$longitude), as.numeric(selectdf$latitude), color = (selectdf$colors),
                            fillOpacity = 1, radius = 2.5, stroke = FALSE,
                            popup = popupInfo) %>%
-          addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
+          addLegend("topleft", colors=colors.pal, labels=sort(category_level),
+                    title = "Coral Category") %>%
           addProviderTiles(providers$Esri.OceanBasemap)%>%
           setView(lat = as.numeric(selectdf$latitude), lng = as.numeric(selectdf$longitude), zoom = 8)
       }
@@ -649,7 +655,8 @@ shinyServer(function(input, output, session) {
         output$error <- renderPrint({"Please enter the right number."})
         leaflet() %>%
           addTiles() %>%
-          addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
+          addLegend("topleft", colors=colors.pal, labels=sort(category_level),
+                    title = "Coral Category") %>%
           addProviderTiles(providers$Esri.OceanBasemap)%>%
           setView(lat = 30, lng = -160, zoom = 3)
       }
@@ -681,11 +688,32 @@ shinyServer(function(input, output, session) {
     
     ################################################################################################ 
     #####################                BEGIN STATISTICS TAB                    ###################      
-    output$plot_3d <- renderPlotly({
-        select_by_df <- select_by_type(input$coral_category)
-        p <- plot_ly(type = "scatter3d", mode = "markers", showlegend = TRUE) %>%
-             add_trace(p, x = ~DepthInMeters, y = ~Condition, z = ~FishCouncilRegion,
-                       data = select_by_df)
+    output$overall <- renderPlotly({
+      plot_ly(x = ~FishCouncilRegion, y = ~sort(VernacularNameCategory), z = ~DepthInMeters,
+              type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), data = df)
+    })
+    
+    output$hist<- renderPlot({
+      selectdf_1 <- select_by_type(input$category_1)
+      g <- ggplot(selectdf_1, aes(DepthInMeters)) + scale_fill_brewer(palette = "Blues")
+      g + geom_histogram(aes(fill=Condition), 
+                         bins=20, 
+                         col="black", 
+                         size=.1, alpha = 0.8) +
+        labs(title="Histogram of Depth")
+    })
+    
+    output$pie<-renderPlot({
+      selectdf_2 <- select_by_type(input$category_2)
+      df2 <- data.frame(table(selectdf_2$FishCouncilRegion))
+      colnames(df2)<- c("Region","Freq")
+      df2 = df2[order(df2$Freq, decreasing = TRUE),] 
+      myLabel = as.vector(df2$Region)   
+      myLabel = paste(myLabel, "(", round(df2$Freq / sum(df2$Freq) * 100, 2), "%)", sep = "")
+      colors.pal <- brewer.pal(nrow(df2), "Set2")
+      lp <- pie3D(df2$Freq,
+                  radius=0.8,height=0.1,labels=myLabel,explode=0.1,
+                  main="Coral's Distribution Pie Chart",col= colors.pal)
     })
     #####################                  END STATISTICS TAB                    ###################      
     ################################################################################################     
