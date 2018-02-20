@@ -177,6 +177,8 @@ shinyUI(navbarPage(
     tabPanel("MAP", div(id="canvas"), 
         #map
         leafletOutput("map", width="100%", height = "600px"),
+        
+        #filter
         absolutePanel(id = "Corals", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
                       top = "auto", left = "auto", right = 176, bottom = 180, 
                       width = 155, height = "auto",
@@ -195,9 +197,13 @@ shinyUI(navbarPage(
         ),
         absolutePanel(id = "Corals", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
                       top = "auto", left = "auto", right = 20, bottom = 56, 
-                      width = 311, height = "auto",
-                      sliderInput("depth", label = h4("Depth (m)"),
-                                  min = -999, max = 4500, value = c(0,4000))
+                      width = 310, height = "auto",
+                      sliderInput("depth", label = h4("Depth (m)"), min = 0, max = 5000, value = c(0,5000))
+        ),
+        absolutePanel(id = "Corals", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
+                      top = 500, left = 20, right = "auto", bottom = "auto", width = 310, height = "auto",
+                      textInput("number", "CatalogNumber"),
+                      verbatimTextOutput("error")
         )
     ),
     #####################                     END MAP TAB                        ###################      

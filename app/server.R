@@ -22,13 +22,8 @@ library(plotly)
 
 ####################################################################################################
 #####################                 BEGIN Data Processing                    #####################
-#getwd()
 # Load data
-data_coral_all<- read.csv("deep_sea_corals_USA.csv", header = TRUE, as.is = TRUE)
-# Sampling 1000 (need to be updated with final dataset)
-set.seed(123)
-data_coral <- data_coral_all[sample(nrow(data_coral_all),1000),]
-#data_coral%>%group_by(VernacularNameCategory)%>%summarise(n=n())
+load("deep_sea_corals_sample.Rdata")
 
 ### BEGIN PHOTO GALLERY TAB ###
 #data_coral[!is.na(data_coral$ImageURL),]%>%group_by(VernacularNameCategory)%>%summarise(n=n())
@@ -44,10 +39,11 @@ data_stony_image <- data_coral_image[data_coral_image$VernacularNameCategory=="s
 ### END PHOTO GALLERY TAB ###
 
 ### BEGIN MAP TAB ###
-category_choices <- c("black coral", "gold coral", "gorganian coral", "lace coral", "sea pen",
-                      "soft coral", "stoloniferan coral", "stony coral")
-council_choices <- c("Caribbean", "Gulf of Mexico", "Mid-Atlantic", "New England", "North Pacific",
-                     "Pacific", "South Atlantic", "Western Pacific")
+category_level = unique(data_coral$VernacularNameCategory)
+category_choices = c(as.character(sort(category_level)))
+council_level = unique(data_coral$FishCouncilRegion)
+council_choices = c(as.character(sort(council_level)))
+
 # Add colors to different types
 colors.pal <- brewer.pal(length(category_choices), "Set1")
 data_coral$colors <- NULL
@@ -55,20 +51,32 @@ for (i in 1:length(category_choices)){
   data_coral[data_coral$VernacularNameCategory == category_choices[i],'colors'] <- colors.pal[i]
 }
 
-# Select data function
-select <- function(category, council, depth) {
-  category_index=which(data_coral$VernacularNameCategory%in%category)
-  council_index=which(data_coral$FishCouncilRegion%in%council)
+# function
+selectdf <- function(category, council, depth, number) {
+  category_index = which(data_coral$VernacularNameCategory%in%category)
+  council_index = which(data_coral$FishCouncilRegion%in%council)
   depth_index = which((data_coral$DepthInMeters>=depth[1])&(data_coral$DepthInMeters<=depth[2]))
-  index = Reduce(intersect, list(category_index, council_index, depth_index))
-  selectdf <- data_coral[index,]
-  return(selectdf)
+  number_index = which(data_coral$CatalogNumber==number)
+  flag = 0
+  if (number%in%data_coral$CatalogNumber){
+    flag = 1
+    number_index = which(data_coral$CatalogNumber==number)
+    selectdf <- data_coral[number_index,]
+  }
+  else{
+    if (number != ""){
+      flag = 2
+    }
+    index = Reduce(intersect, list(category_index, council_index, depth_index))
+    selectdf <- data_coral[index,]
+  }
+  return(list("df"=selectdf, "f"=flag))
 }
 
 select_by_type <- function(coral_category = "stony coral") {
   if (is.null(coral_category)){coral_category="stony coral"} 
-  category_index = which(df$VernacularNameCategory%in%coral_category)
-  select_by_df <- df[category_index, 
+  category_index = which(data_coral$VernacularNameCategory%in%coral_category)
+  select_by_df <- data_coral[category_index, 
                      c("VernacularNameCategory", "DepthInMeters", "Condition", "FishCouncilRegion")]
   return(select_by_df)
 }
@@ -598,24 +606,54 @@ shinyServer(function(input, output, session) {
     ################################################################################################ 
     #####################                   BEGIN MAP TAB                        ###################      
     output$map <- renderLeaflet({
-        selectdf <- select(input$category, input$council, input$depth)
+      res <- selectdf(input$category, input$council, input$depth, input$number)
+      selectdf <- res$df
+      flag <- res$f
+      popupInfo <- paste('<strong> Catalog Number </strong>:', selectdf$CatalogNumber, '<br/>', 
+                         '<strong> Scientific Name </strong>: ', selectdf$ScientificName, '<br/>',
+                         '<strong> Class (Subclass) </strong>:', selectdf$Class,'(',selectdf$Subclass,')','<br/>',
+                         '<strong> Location </strong>:', selectdf$Locality, '<br/>',
+                         '<strong> Position (lat lon) </strong>:', selectdf$latitude,selectdf$longitude, '<br/>',
+                         '<strong> Depth (m) </strong>:', selectdf$DepthInMeters,'<br/>',
+                         '<strong> Condition </strong>:', selectdf$Condition,'<br/>',
+                         '<strong> Observation Date </strong>:', selectdf$ObservationDate, '<br/>',
+                         '<strong> Data Provider </strong>:', selectdf$DataProvider,'<br/>',
+                         '<img src = ', selectdf$ImageURL, 'height = "100" width = "100" >')
+      
+      if (flag == 0){
+        output$error <- renderPrint({invisible(NULL)})
         leaflet() %>%
-            addTiles() %>%
-            addCircleMarkers(selectdf$longitude, selectdf$latitude, color = (selectdf$colors),
-                fillOpacity = 1, radius = 2.5, stroke = FALSE,
-                popup =  paste('<strong> Catalog Number </strong>:', selectdf$CatalogNumber, '<br/>', 
-                               '<strong> Scientific Name </strong>: ', selectdf$ScientificName, '<br/>',
-                               '<strong> Class (Subclass) </strong>:', selectdf$Class,'(',selectdf$Subclass,')','<br/>',
-                               '<strong> Location </strong>:', selectdf$Locality, '<br/>',
-                               '<strong> Position (lat lon) </strong>:', selectdf$latitude,selectdf$longitude, '<br/>',
-                               '<strong> Depth (m) </strong>:', selectdf$DepthInMeters,'<br/>',
-                               '<strong> Condition </strong>:', selectdf$Condition,'<br/>',
-                               '<strong> Observation Date </strong>:', selectdf$ObservationDate, '<br/>',
-                               '<strong> Data Provider </strong>:', selectdf$DataProvider,'<br/>',
-                               '<strong> Website </strong>:', a(selectdf$Website, href=selectdf$Website), '<br/>')) %>%
-            addLegend("topleft", colors=colors.pal, labels=category_choices) %>%
-            addProviderTiles(providers$Esri.OceanBasemap)%>%
-            setView(lat = 28, lng = -100, zoom = 3)
+          addTiles() %>%
+          addCircleMarkers(as.numeric(selectdf$longitude), as.numeric(selectdf$latitude), color = (selectdf$colors),
+                           fillOpacity = 1, radius = 2.5, stroke = FALSE,
+                           popup = popupInfo) %>%
+          addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
+          addProviderTiles(providers$Esri.OceanBasemap)%>%
+          setView(lat = 30, lng = -100, zoom = 3)
+        
+      }
+      
+      else if (flag == 1){
+        output$error <- renderPrint({invisible(NULL)})
+        leaflet() %>%
+          addTiles() %>%
+          addCircleMarkers(as.numeric(selectdf$longitude), as.numeric(selectdf$latitude), color = (selectdf$colors),
+                           fillOpacity = 1, radius = 2.5, stroke = FALSE,
+                           popup = popupInfo) %>%
+          addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
+          addProviderTiles(providers$Esri.OceanBasemap)%>%
+          setView(lat = as.numeric(selectdf$latitude), lng = as.numeric(selectdf$longitude), zoom = 8)
+      }
+      
+      else{
+        output$error <- renderPrint({"Please enter the right number."})
+        leaflet() %>%
+          addTiles() %>%
+          addLegend("topleft", colors=colors.pal, labels=sort(category_level)) %>%
+          addProviderTiles(providers$Esri.OceanBasemap)%>%
+          setView(lat = 30, lng = -160, zoom = 3)
+      }
+      
     })
     
     # select all/clear all corals categories
