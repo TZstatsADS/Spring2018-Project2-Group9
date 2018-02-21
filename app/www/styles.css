@@ -23,6 +23,13 @@
     right: 0;
     opacity: 0.25;
 }
+
+/* Set font size of Welcome and Get On Board Pages*/
+#fz10{font-size: 1.0vw}
+#fz12{font-size: 1.2vw}
+#fz15{font-size: 1.5vw}
+#fz20{font-size: 2.0vw}
+
 *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 body{margin:0}
