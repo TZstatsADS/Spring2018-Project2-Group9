@@ -4,26 +4,25 @@
 
 In this second project of GR5243 Applied Data Science, we develop an *Exploratory Data Analysis and Visualization* shiny app on a topic of your choice using U.S. government open data released on the [data.gov](https://data.gov/) website. See [Project 2 Description](doc/project2_desc.md) for more details. 
 
-The app is available here:()
+The app is available here:[Finding Coral]()
 
-Data Source:[data.gov](https://deepseacoraldata.noaa.gov/website/AGSViewers/DeepSeaCorals/mapSites.htm)
+Data Source: [data.gov](https://deepseacoraldata.noaa.gov/website/AGSViewers/DeepSeaCorals/mapSites.htm)
 
-
-## Project Title Lorem ipsum dolor sit amet
+## Project Title: Finding Coral 
 Term: Spring 2018
 
-+ Team #
-+ **Projec title**: + Team members
-	+ team member 1
-	+ team member 2
-	+ team member 3
-	+ team member 4
-	+ team member 5
++ Team 9
++ **Finding Coral**: Team members
+	+ Yuhao Kang
+	+ Yuehan Kong
+	+ Xueyao Li
+	+ Yiyi Zhang
 
-+ **Project summary**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ **Project summary**: .
 
 + **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
++ **App demostration**:
 ![screenshot](doc/screenshot2.png)
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
