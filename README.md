@@ -14,10 +14,10 @@ Data Source:
              
 
 ## Project Title: Finding Coral 
-Term: Spring 2018
++ Term: Spring 2018
 
 + Team #9
-+ **Finding Coral**: Team members
++ Team members:
 	+ Yuhao Kang
 	+ Yuehan Kong
 	+ Xueyao Li
