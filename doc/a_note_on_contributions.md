@@ -26,3 +26,10 @@ Xueyao Li
 + Help yuehan improve functions on the map page.
 + Build the statistics page with yuhao as well as improve it.
 + Join every week team meeting to discuss and how to improve our app.
+
+
+Yiyi Zhang  
++ Team leader and presenter
++ Came up with the project topic, found data sources on data.gov and other websites, led the team designing our shiny App 
++ Designed "Welcome", "Get on Board", and "Photo Gallery" pages and provided techniqual support to "Map" and "Statistics" pages
++ Set up shiny App theme with .css file 
