@@ -19,6 +19,7 @@ Yuehan Kong
 
 Xueyao Li
 + Dicuss topics with other teamates, and provide a good topic with animal care, however we do not use it because we cannot find data to support it.
++ Explore the website noaa.gov to figure out the meaning of each variables.
 + Doing first step data cleaning, since our data is especially huge, we use the stratified sampling method to deal with the original data. 
 + Get rid of NA value which will not affect out analysis.
 + Build the ui.R for the map and also improve the function of server.R that yuehan wrote before.
