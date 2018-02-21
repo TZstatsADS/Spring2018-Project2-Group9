@@ -248,22 +248,22 @@ shinyUI(navbarPage(
     ###
     tabPanel("STATISTICS", div(id="canvas"),
              tabsetPanel(
-               tabPanel( "Overall 3D Scatter Plot", plotlyOutput("overall", width = "100%", height = "600px")),
-               tabPanel( "Histogram of Depth",
-                         sidebarPanel(fixed = TRUE, draggable = TRUE,
-                                      top = 80, left = 20, right = "auto", bottom = "auto", width = 100, height = "auto",
-                                      selectInput("category_1", label = "Coral Category",
-                                                  choices = category_choices, selected = category_choices),
-                                      plotOutput("hist", width = "100%", height = "500px"))
-               ),
-               tabPanel("Pie Chart of Amount by Regions",
+               tabPanel( "Overall", plotlyOutput("overall", width = "100%", height = "600px")),
+               tabPanel("Amount by Regions",
                         sidebarPanel(fixed = TRUE, draggable = TRUE,
                                      top = 80, left = 20, right = "auto", bottom = "auto", width = 100, height = "auto",
                                      selectInput("category_2", label = "Coral Category", 
                                                  choices = category_choices, selected = category_choices),
                                      plotOutput("pie", width = "100%", height = "500px")
                         )
-               )
+               ),                      
+               tabPanel( "Depth Distribution",
+                         sidebarPanel(fixed = TRUE, draggable = TRUE,
+                                      top = 80, left = 20, right = "auto", bottom = "auto", width = 100, height = "auto",
+                                      selectInput("category_1", label = "Coral Category",
+                                                  choices = category_choices, selected = category_choices),
+                                      plotOutput("hist", width = "100%", height = "500px"))
+               )                   
              )
     )        
     #####################                  END STATISTICS TAB                    ###################      
