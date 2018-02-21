@@ -23,7 +23,7 @@ library(plotrix)
 
 ####################################################################################################
 #####################                 BEGIN Data Processing                    #####################
-category_choices <- c("black coral", "gold coral", "gorganian coral", "lace coral", "sea pen",
+category_choices <- c("black coral", "gold coral", "gorgonian coral", "lace coral", "sea pen",
                       "soft coral", "stoloniferan coral", "stony coral")
 council_choices <- c("Caribbean", "Gulf of Mexico", "Mid-Atlantic", "New England", "North Pacific",
                      "Pacific", "South Atlantic", "Western Pacific")
@@ -184,7 +184,7 @@ shinyUI(navbarPage(
              # filter
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
                            fixed = TRUE, draggable = TRUE,
-                           top = "auto", left = "auto", right = 176, bottom = 185, width = 155, height = 290,
+                           top = "auto", left = "auto", right = 176, bottom = 275, width = 155, height = 300,
                            checkboxGroupInput("category", label = h4("Category"), 
                                               choices = category_choices, selected = category_choices),
                            actionButton("select_corals", "Select All",
@@ -201,7 +201,7 @@ shinyUI(navbarPage(
              
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
                            fixed = TRUE, draggable = TRUE,
-                           top = "auto", left = "auto", right = 20, bottom = 185, width = 155, height = 290,
+                           top = "auto", left = "auto", right = 20, bottom = 275, width = 155, height = 300,
                            checkboxGroupInput("council", label = h4("Council"), 
                                               choices = council_choices, selected = council_choices),
                            actionButton("select_councils", "Select All",
@@ -218,15 +218,10 @@ shinyUI(navbarPage(
              
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
                            fixed = TRUE, draggable = TRUE,
-                           top = "auto", left = "auto", right = 20, bottom = 65, width = 311, height = 120,
-                           sliderInput("depth", label = h5("Depth (m)"),min = 0, max = 5000, value = c(0,4000))
-             ),
-             
-             absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
-                           fixed = TRUE, draggable = TRUE,
-                           top = "auto", left = "auto", right = 20, bottom = 525, width = 311, height = 70,
+                           top = "auto", left = "auto", right = 20, bottom = 155, width = 311, height = 120,
+                           sliderInput("depth", label = h5("Depth"),min = 0, max = 5000, value = c(0,5000)),
                            textInput("number", "CatalogNumber"),
-                           verbatimTextOutput("error", placeholder = TRUE)
+                           verbatimTextOutput("error")
              )
     ),
     #####################                     END MAP TAB                        ###################      
@@ -235,7 +230,7 @@ shinyUI(navbarPage(
     ################################################################################################ 
     #####################                BEGIN STATISTICS TAB                    ###################      
     ###
-    tabPanel("Statistics", div(id="canvas"),
+    tabPanel("STATISTICS", div(id="canvas"),
              tabsetPanel(
                tabPanel( "Overall", plotlyOutput("overall", width = "100%", height = "600px")),
                tabPanel( "Depth",

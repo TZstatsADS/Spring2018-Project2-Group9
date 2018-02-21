@@ -75,7 +75,7 @@ selectdf <- function(category, council, depth, number) {
   return(list("df"=selectdf, "f"=flag))
 }
 
-select_by_type <- function(coral_category = "stony coral") {
+select_by_type <- function(coral_category) {
   if (is.null(coral_category)){coral_category="stony coral"} 
   category_index = which(data_coral$VernacularNameCategory%in%coral_category)
   select_by_df <- data_coral[category_index, 
@@ -690,30 +690,31 @@ shinyServer(function(input, output, session) {
     #####################                BEGIN STATISTICS TAB                    ###################      
     output$overall <- renderPlotly({
       plot_ly(x = ~FishCouncilRegion, y = ~sort(VernacularNameCategory), z = ~DepthInMeters,
-              type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), data = df)
+              type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), data = data_coral) 
+        #layout(plot_bgcolor='black') %>% 
+        #layout(paper_bgcolor='transparent')
     })
     
     output$hist<- renderPlot({
       selectdf_1 <- select_by_type(input$category_1)
       g <- ggplot(selectdf_1, aes(DepthInMeters)) + scale_fill_brewer(palette = "Blues")
-      g + geom_histogram(aes(fill=Condition), 
-                         bins=20, 
-                         col="black", 
-                         size=.1, alpha = 0.8) +
+      g + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+                panel.background = element_blank(), axis.line = element_line(colour = "black")) + 
+        geom_histogram(aes(fill=Condition), bins=20, col="black", size=.1, alpha = 0.8) +
         labs(title="Histogram of Depth")
     })
     
     output$pie<-renderPlot({
       selectdf_2 <- select_by_type(input$category_2)
-      df2 <- data.frame(table(selectdf_2$FishCouncilRegion))
-      colnames(df2)<- c("Region","Freq")
-      df2 = df2[order(df2$Freq, decreasing = TRUE),] 
-      myLabel = as.vector(df2$Region)   
-      myLabel = paste(myLabel, "(", round(df2$Freq / sum(df2$Freq) * 100, 2), "%)", sep = "")
-      colors.pal <- brewer.pal(nrow(df2), "Set2")
-      lp <- pie3D(df2$Freq,
-                  radius=0.8,height=0.1,labels=myLabel,explode=0.1,
-                  main="Coral's Distribution Pie Chart",col= colors.pal)
+      df <- data.frame(table(selectdf_2$FishCouncilRegion))
+      colnames(df)<- c("Region","Freq")
+      df = df[order(df$Freq, decreasing = TRUE),] 
+      myLabel = as.vector(df$Region)   
+      myLabel = paste(myLabel, "(", round(df$Freq / sum(df$Freq) * 100, 2), "%)", sep = "")
+      colors.pal <- brewer.pal(nrow(df), "Set2")
+      lp <- pie3D(df$Freq,
+                  radius=0.8, height=0.1, labels=myLabel, explode=0.1,
+                  main="Pie Chart of Region", col= colors.pal)
     })
     #####################                  END STATISTICS TAB                    ###################      
     ################################################################################################     
