@@ -20,7 +20,7 @@ Term: Spring 2018
 
 + **Project summary**: In order to increase the recognition of the values of deep-sea corals and the awareness of the deep-sea coral protection, we create this fantastic app. It introduces various meaningful values, basic information, location, distribution as well as statistic summmaries of deep-sea corals. The app will engage and support researcheres in the study of deep-sea corals. It also help organizations who have recognized values of deep-sea corals, such as medical researchers, to identify the deep-sea corals of their interest. Moreover, it not only makes individual and business recognize values of deep-sea corals, but also engage them in deep-sea coral protection.
  
-+ **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
++ **Contribution statement**: ([Team #9 contribution statement](doc/a_note_on_contributions.md))
 
 + **App demostration**:
 ![screenshot](doc/screenshot2.png)
