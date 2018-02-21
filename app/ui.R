@@ -188,15 +188,23 @@ shinyUI(navbarPage(
                            checkboxGroupInput("category", label = h4("Category"), 
                                               choices = category_choices, selected = category_choices),
                            actionButton("select_corals", "Select All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center"),
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;"),
                            actionButton("clear_corals", "Clear All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center")
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;")
              ),
              
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
@@ -205,15 +213,23 @@ shinyUI(navbarPage(
                            checkboxGroupInput("council", label = h4("Council"), 
                                               choices = council_choices, selected = council_choices),
                            actionButton("select_councils", "Select All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center"),
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;"),
                            actionButton("clear_councils", "Clear All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center")
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;")
              ),
              
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
