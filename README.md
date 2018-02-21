@@ -22,8 +22,11 @@ Term: Spring 2018
  
 + **Contribution statement**: ([Team #9 contribution statement](doc/a_note_on_contributions.md))
 
-+ **App demostration**:
-![screenshot](doc/screenshot2.png)
++ **App demostration**: Mainly show four parts of our app, they are 
+![screenshot](doc/Screen Shot 2018-02-21 at 14.17.53.png)
+![screenshot](doc/Screen Shot 2018-02-21 at 14.18.25.png)
+![screenshot](doc/Screen Shot 2018-02-21 at 14.19.04.png)
+![screenshot](doc/Screen Shot 2018-02-21 at 14.19.48.png)
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
