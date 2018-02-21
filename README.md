@@ -35,7 +35,7 @@ Data Source:
 
 ![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2016.14.52.png)
 
-![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2014.19.48.png)
+![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2016.51.49.png)
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
