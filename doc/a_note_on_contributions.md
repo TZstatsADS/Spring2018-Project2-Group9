@@ -8,7 +8,7 @@ Contribution Statement:
 
 Yuehan Kong
 + Search online with other teamates to determine the project topic and read reports to find corals' value.
-+ Join each team meeting to discuss selecting variables we need and how to improve our app.
++ Join each team meeting to discuss selecting variables on data cleaning process and how to improve our app.
 + In server.R, code different types of coral with different colors, draw the map, locate different types of coral with distinguished color on it and display each corals' information. 
 + Help xueyao built ui.R for the map and later improve all functions in map page.
 + Build the 3d scatter plot according to diffrent coral types. Yuhao and Xueyao update it to diaplay overall corals.
