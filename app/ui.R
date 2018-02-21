@@ -38,7 +38,7 @@ shinyUI(navbarPage(
     theme = "styles.css",
     
     ### Application Title
-    title = strong('Finding Coral', style='color:black;'),
+    title = strong('Finding Coral', style='color:#d0f7ef;'),
     
     ################################################################################################ 
     #####################                BEGIN WELCOME TAB                       ###################
