@@ -690,7 +690,8 @@ shinyServer(function(input, output, session) {
     #####################                BEGIN STATISTICS TAB                    ###################      
     output$overall <- renderPlotly({
       plot_ly(x = ~FishCouncilRegion, y = ~sort(VernacularNameCategory), z = ~DepthInMeters,
-              type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), data = data_coral) %>% 
+              type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), 
+              data = data_coral,marker = list(size = 4)) %>% 
         layout(plot_bgcolor='black') %>% 
         layout(paper_bgcolor='transparent')
     })
@@ -701,7 +702,12 @@ shinyServer(function(input, output, session) {
       g + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                 panel.background = element_blank(), axis.line = element_line(colour = "black")) + 
         geom_histogram(aes(fill=Condition), bins=20, col="black", size=.1, alpha = 0.8) +
-        labs(title="Histogram of Depth")
+        labs(title="Histogram of Depth")+
+        theme(
+          plot.title = element_text(size=20, face="bold",hjust = 0.5),
+          axis.title.x = element_text(size=14, face="bold"),
+          axis.title.y = element_text(size=14, face="bold")
+        )
     })
     
     output$pie<-renderPlot({
@@ -713,8 +719,10 @@ shinyServer(function(input, output, session) {
       myLabel = paste(myLabel, "(", round(df$Freq / sum(df$Freq) * 100, 2), "%)", sep = "")
       colors.pal <- brewer.pal(nrow(df), "Set2")
       lp <- pie3D(df$Freq,
-                  radius=0.8, height=0.1, labels=myLabel, explode=0.1,
-                  main="Pie Chart of Region", col= colors.pal)
+                  radius=1.75, height=0.15, explode=0.1,
+                  main="Pie Chart of Coral Amount by Regions", col= colors.pal)
+      pie3D.labels(lp ,labels=myLabel,labelrad=2.5,minsep=1,labelcex = 1.2)
+      
     })
     #####################                  END STATISTICS TAB                    ###################      
     ################################################################################################     
