@@ -22,8 +22,7 @@ Term: Spring 2018
  
 + **Contribution statement**: ([Team #9 contribution statement](doc/a_note_on_contributions.md))
 
-+ **App demostration**: Mainly show four parts of our app, they are 
-
++ **App demostration**: Mainly show four parts of our app as follows, they are "GET ON BOARD", "PHOTO GALLERY", "MAP" and "STATISTICS".
 
 ![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2014.17.53.png)
 
