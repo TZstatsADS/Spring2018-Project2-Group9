@@ -690,9 +690,9 @@ shinyServer(function(input, output, session) {
     #####################                BEGIN STATISTICS TAB                    ###################      
     output$overall <- renderPlotly({
       plot_ly(x = ~FishCouncilRegion, y = ~sort(VernacularNameCategory), z = ~DepthInMeters,
-              type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), data = data_coral) 
-        #layout(plot_bgcolor='black') %>% 
-        #layout(paper_bgcolor='transparent')
+              type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), data = data_coral) %>% 
+        layout(plot_bgcolor='black') %>% 
+        layout(paper_bgcolor='transparent')
     })
     
     output$hist<- renderPlot({

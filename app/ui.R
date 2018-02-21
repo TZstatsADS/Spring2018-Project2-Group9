@@ -233,14 +233,14 @@ shinyUI(navbarPage(
     tabPanel("STATISTICS", div(id="canvas"),
              tabsetPanel(
                tabPanel( "Overall", plotlyOutput("overall", width = "100%", height = "600px")),
-               tabPanel( "Depth",
+               tabPanel( "Histogram of Depth Distribution",
                          sidebarPanel(fixed = TRUE, draggable = TRUE,
                                       top = 80, left = 20, right = "auto", bottom = "auto", width = 100, height = "auto",
                                       selectInput("category_1", label = "Coral Category",
                                                   choices = category_choices, selected = category_choices),
                                       plotOutput("hist", width = "100%", height = "500px"))
                ),
-               tabPanel("Pie",
+               tabPanel("Pie Chart of Geographical Distribution",
                         sidebarPanel(fixed = TRUE, draggable = TRUE,
                                      top = 80, left = 20, right = "auto", bottom = "auto", width = 100, height = "auto",
                                      selectInput("category_2", label = "Coral Category", 
