@@ -222,9 +222,9 @@ shinyServer(function(input, output, session) {
     #####################            BEGIN How You Can Help TAB                  ###################      
     output$text_gob4 <- renderUI({
         HTML('    
-           <h2>How You Can Help?</h2>
+           <h2 id="fz20">How You Can Help?</h2>
            <br/>
-           <ul>
+           <ul id="fz10">
               <li>Support organizations that are working for coral protection</li>
               <li>Do not buy jewelry or curios made from deep-sea corals</li>
               <li>Make seafood choices that support sustainable fishing practices </li>
