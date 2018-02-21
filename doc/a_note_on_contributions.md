@@ -6,6 +6,12 @@ Team members: Yuhao Kang, Yuehan Kong, Xueyao Li, Yiyi Zhang
 
 Contribution Statement:
 
+Yuhao Kang
++ Collected data about related survey of corals.
++ Built the "Statistics"" page and its subclass with Xueyao.
++ Mainly worked on interactive hist, pie chart and overalll 3D scatter plot, improved plot quality by adjusting parameters.
++ Joined team discussion and organized ideas about improvements.
+
 Yuehan Kong
 + Searched online topics and read reports to find corals' value.
 + Joined team meetings to discuss selecting variables on data cleaning process and how to improve our app.
@@ -24,14 +30,10 @@ Xueyao Li
 
 
 Yiyi Zhang  
-+ Team leader and presenter
-+ Came up with the project topic, found data sources on data.gov and other websites, led the team designing our shiny App 
-+ Designed "Welcome", "Get on Board", and "Photo Gallery" pages and provided techniqual support to "Map" and "Statistics" pages
-+ Set up shiny App theme with .css file 
++ Came up with the project topic, found data sources on data.gov and other websites, instructed the team designing our shiny App.
++ Set up shiny App theme with .css file and was responsible for overall structure and design of the app.
++ Built "Welcome", "Get on Board", and "Photo Gallery" pages.
++ Provided techniqual support to build "Map" and "Statistics" pages, for example, how efficiently filtering data, applying leaflet package, and adjusting labels of graphs.
++ Published the app and presented our app in class. 
 
 
-Yuhao Kang
-+ Collected data about related survey of corals.
-+ Built the "Statistics"" page and its subclass with Xueyao.
-+ Mainly worked on interactive hist, pie chart and overalll 3D scatter plot, improved plot quality by adjusting parameters.
-+ Joined team discussion and organized ideas about improvements.
