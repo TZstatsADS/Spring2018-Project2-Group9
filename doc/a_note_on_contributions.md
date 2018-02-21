@@ -7,12 +7,12 @@ Team members: Yuhao Kang, Yuehan Kong, Xueyao Li, Yiyi Zhang
 Contribution Statement:
 
 Yuehan Kong
-+ Search online with other teamates to determine the project topic and read reports to find corals' value.
-+ Join each team meeting to discuss selecting variables on data cleaning process and how to improve our app.
-+ In server.R, code different types of coral with different colors, draw the map, locate different types of coral with distinguished color on it and display each corals' information. 
-+ Help xueyao built ui.R for the map and later improve all functions in map page.
-+ Build the 3d scatter plot according to diffrent coral types. Yuhao and Xueyao update it to diaplay overall corals.
-+ Organize the GitHub page and write the readme page.
++ Searched online topics and read reports to find corals' value.
++ Joined team meetings to discuss selecting variables on data cleaning process and how to improve our app.
++ In server.R, coded different types of coral with different colors, drew the map, located different types of coral with distinguished color on it and displayed each corals' information. 
++ Helped Xueyao built ui.R for the map and improved all functions in map page.
++ Built the 3d scatter plot according to diffrent coral types. Yuhao and Xueyao updated it to diaplay overall corals.
++ Organized the GitHub page and wrote the readme page.
 
 Xueyao Li
 + Dicuss topics with other teamates, and provide a good topic with animal care, however we do not use it because we cannot find data to support it.
