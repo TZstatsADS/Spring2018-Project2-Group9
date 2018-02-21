@@ -34,5 +34,6 @@ Yiyi Zhang
 
 Yuhao Kang
 + Helped Xueyao clean our dataset, merged web links into original data.
-+ Built the "Statistics"" page and its subclass with Xueyao, mainly worked on interactive hist, pie chart and overalll 3D scatter plot, improved plot quality by adjusting parameters.
++ Built the "Statistics"" page and its subclass with Xueyao.
++ Mainly worked on interactive hist, pie chart and overalll 3D scatter plot, improved plot quality by adjusting parameters.
 + Joined team discussion and organized ideas about improvements.
