@@ -6,7 +6,12 @@ In this second project of GR5243 Applied Data Science, we develop an *Explorator
 
 The app is available here: [Finding Coral](https://yiyi-zhang-cu.shinyapps.io/finding_coral/)
 
-Data Source: [data.gov](https://deepseacoraldata.noaa.gov/website/AGSViewers/DeepSeaCorals/mapSites.htm)
+Data Source: 
+
+1. [data.gov](https://catalog.data.gov/dataset/noaa-national-deep-sea-coral-and-sponge-database-1842-present)
+	     
+2. [noaa](https://deepseacoraldata.noaa.gov/website/AGSViewers/DeepSeaCorals/mapSites.htm)
+             
 
 ## Project Title: Finding Coral 
 Term: Spring 2018
@@ -26,7 +31,7 @@ Term: Spring 2018
 
 ![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2014.17.53.png)
 
-![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2014.18.25.png)
+![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2015.47.50.png)
 
 ![screenshot](https://github.com/TZstatsADS/Spring2018-Project2-Group9/blob/master/doc/Screen%20Shot%202018-02-21%20at%2014.19.04.png)
 
