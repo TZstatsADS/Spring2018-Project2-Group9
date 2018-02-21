@@ -16,7 +16,7 @@ Yuehan Kong
 
 Xueyao Li
 + Contacted the staff of website to access the entire data and figure out the meaning of each variables.
-+ Data cleaning: selected variables, dealed with missing and improperly formatted data and reduce the data size by stratified sampling.
++ Data cleaning: selected variables, dealed with missing and improperly formatted data and reduce the size of data by stratified sampling.
 + Built the ui.R for the map page and improved the function of server.R that Yuehan wrote before.
 + Add functions on the map page: search number and zoom in speicfic coral.
 + Built the statistics page with Yuhao as well as improved it.
