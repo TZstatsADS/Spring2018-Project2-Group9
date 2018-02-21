@@ -184,41 +184,57 @@ shinyUI(navbarPage(
              # filter
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
                            fixed = TRUE, draggable = TRUE,
-                           top = "auto", left = "auto", right = 176, bottom = 275, width = 155, height = 300,
+                           top = 140, left = "auto", right = 176, bottom = "auto", width = 155, height = 300,
                            checkboxGroupInput("category", label = h4("Category"), 
                                               choices = category_choices, selected = category_choices),
                            actionButton("select_corals", "Select All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center"),
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;"),
                            actionButton("clear_corals", "Clear All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center")
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;")
              ),
              
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
                            fixed = TRUE, draggable = TRUE,
-                           top = "auto", left = "auto", right = 20, bottom = 275, width = 155, height = 300,
+                           top = 140, left = "auto", right = 20, bottom = "auto", width = 155, height = 300,
                            checkboxGroupInput("council", label = h4("Council"), 
                                               choices = council_choices, selected = council_choices),
                            actionButton("select_councils", "Select All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center"),
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;"),
                            actionButton("clear_councils", "Clear All",
-                                        style = "height: 25px;
-                                        width: 66px;
-                                        font-size: 11px;
-                                        text-align: center")
+                                        style = " color: #404040;
+                                        border-color: #f2f2f2;
+                                        background-color: #f2f2f2;
+                                        height: 25px;
+                                        width: 67px;
+                                        font-size: 12px;
+                                        padding-left: 6.5px;
+                                        padding-top: 3px;")
              ),
              
              absolutePanel(id = "Corals", class = "panel panel-default", style = "opacity: 0.7",
                            fixed = TRUE, draggable = TRUE,
-                           top = "auto", left = "auto", right = 20, bottom = 155, width = 311, height = 120,
+                           top = 441, left = "auto", right = 20, bottom = "auto", width = 311, height = 120,
                            sliderInput("depth", label = h5("Depth"),min = 0, max = 5000, value = c(0,5000)),
                            textInput("number", "CatalogNumber"),
                            verbatimTextOutput("error")
