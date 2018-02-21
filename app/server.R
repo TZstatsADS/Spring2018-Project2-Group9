@@ -725,7 +725,7 @@ shinyServer(function(input, output, session) {
       colnames(df)<- c("Region","Freq")
       df = df[order(df$Freq, decreasing = TRUE),] 
       myLabel = as.vector(df$Region)   
-      myLabel = paste(myLabel, "(", round(df$Freq / sum(df$Freq) * 100, 2), "%)", sep = "")
+      myLabel = paste(myLabel, " (", round(df$Freq / sum(df$Freq) * 100, 2), "%; ", df$Freq, ")", sep = "")
       colors.pal <- brewer.pal(nrow(df), "Set2")
       lp <- pie3D(df$Freq,
                   radius=1.75, height=0.15, explode=0.1,
