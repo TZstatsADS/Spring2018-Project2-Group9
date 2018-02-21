@@ -15,14 +15,12 @@ Yuehan Kong
 + Organized the GitHub page and wrote the readme page.
 
 Xueyao Li
-+ Dicuss topics with other teamates, and provide a good topic with animal care, however we do not use it because we cannot find data to support it.
-+ Explore the website noaa.gov to figure out the meaning of each variables.
-+ Doing first step data cleaning, since our data is especially huge, we use the stratified sampling method to deal with the original data. 
-+ Get rid of NA value which will not affect out analysis.
-+ Build the ui.R for the map and also improve the function of server.R that yuehan wrote before.
-+ Help yuehan improve functions on the map page.
-+ Build the statistics page with yuhao as well as improve it.
-+ Join every week team meeting to discuss and how to improve our app.
++ Contacted the staff of website to access the entire data and figure out the meaning of each variables.
++ Data cleaning: selected variables, dealed with missing and improperly formatted data and reduce the data size by stratified sampling.
++ Built the ui.R for the map page and improved the function of server.R that Yuehan wrote before.
++ Add functions on the map page: search number and zoom in speicfic coral.
++ Built the statistics page with Yuhao as well as improved it.
++ Joined every week team meeting and discussed how to improve our app.
 
 
 Yiyi Zhang  
@@ -33,7 +31,7 @@ Yiyi Zhang
 
 
 Yuhao Kang
-+ Helped Xueyao clean our dataset, merged web links into original data.
++ Collected data about related survey of corals.
 + Built the "Statistics"" page and its subclass with Xueyao.
 + Mainly worked on interactive hist, pie chart and overalll 3D scatter plot, improved plot quality by adjusting parameters.
 + Joined team discussion and organized ideas about improvements.
