@@ -97,17 +97,17 @@ shinyServer(function(input, output, session) {
     #####################                BEGIN WELCOME TAB                       ###################    
     output$text_hp <- renderUI({
         HTML("
-            <p style='font-size:1.2vw'>Welcome to Finding Coral!</p>
-            <p style='font-size:1.2vw'>We are very excited to help you learn more about 
+            <p id='fz12'>Welcome to Finding Coral!</p>
+            <p id='fz12'>We are very excited to help you learn more about 
                the deep-sea corals within the U.S. fishing councils.</p>
-            <p style='font-size:1.2vw'>Let our journey begin now!</p>
+            <p id='fz12'>Let our journey begin now!</p>
             <br/>
-            <h2 style='font-size:2.0vw;'>OUR MISSION</h2>
-            <p style='font-size:1.2vw'>We aim to increase the recognition of the values of 
+            <h2 id='fz15'>OUR MISSION</h2>
+            <p id='fz10'>We aim to increase the recognition of the values of 
                 deep-sea corals and the awareness of the deep-sea coral protection.</p>
             <br/>
-            <h2 style='font-size:2.0vw;'>OUR GOAL</h2>
-            <ul style='font-size:1.2vw;'>
+            <h2 id='fz15'>OUR GOAL</h2>
+            <ul id='fz10'>
               <li>Facilitate the researchers in the study of the deep-sea corals</li>
               <li>Help organizations who have recognized the values of deep-sea corals, such as 
                    medical researchers, to identify the deep-sea corals of their interest</li>
@@ -115,10 +115,17 @@ shinyServer(function(input, output, session) {
                    as well as to engage in deep-sea coral protection</li>
             </ul>
             <br/>
-            <h2 style='font-size:2.0vw;'>OUR PEOPLE</h2>
-            <p style='font-size:1.2vw'>Xueyao Li, Yuhao Kang, Yuehan Kong, and Yiyi Zhang</p>
+            <h2 id='fz15'>OUR PEOPLE</h2>
+            <ul id='fz10'>
+              <li>Yiyi Zhang: <a href='yz3280@columbia.edu'>yz3280@columbia.edu</a></li>
+              <li>Xueyao Li: <a href='xl2719@columbia.edu'>xl2719@columbia.edu</a></li>
+              <li>Yuehan Kong: <a href='yk2756@columbia.edu'>yk2756@columbia.edu</a></li>
+              <li>Yuhao Kang: <a href='yk2758@columbia.edu'>yk2758@columbia.edu</a></li>
+            </ul>
+            <p id='fz10'><i>Please feel free to contact us if you have any questions or comments 
+              regarding this website.</i></p>
             <br/>
-            <a href='https://github.com/TZstatsADS/Spring2018-Project2-Group9'>Our Github Link</a>
+            <a href='https://github.com/TZstatsADS/Spring2018-Project2-Group9' id='fz10'>Our Github Link</a>
         ")
     })
     #####################                END WELCOME TAB                         ###################
@@ -128,36 +135,36 @@ shinyServer(function(input, output, session) {
     #####################         BEGIN What Are Deep-Sea Corals TAB             ###################  
     output$text_gob1 <- renderUI({
         HTML("
-            <h2>What Are Deep-Sea Corals?</h2>
+            <h2 id='fz20'>What Are Deep-Sea Corals?</h2>
             <br/>
-            <p>Over half of all known coral species are found in deep, dark waters where 
+            <p id='fz10'>Over half of all known coral species are found in deep, dark waters where 
             temperatures range from 4-12 &deg;C. For this reason, these corals are called the 
-            <q>cold-water</q> or <q>deep-sea</q> corals. They are among the oldest living organisms; some 
-            reefs are several thousand years old, and some individual corals live several hundred 
-            years. They can appear in various sizes and forms from massive reefs, tens of meters 
-            high, to individual colonies less than a meter high. </p> 
+            <q>cold-water</q> or <q>deep-sea</q> corals. They can appear in various sizes and forms 
+            from massive reefs, tens of meters high, to individual colonies less than a meter high. 
+            They are among the oldest living organisms; some reefs are several thousand years old, 
+            and some individual corals live several hundred years. </p> 
             <br/> 
-            <p>Deep-sea corals occur throughout coastal-ocean waters in deeper and colder habitats 
-            all over the world, starting at about 40 meters (about 130 feet) in depth, down to about 
-            3,000 meters (about 10,000 feet), but mostly between 300 and 800 meters (1,000 and 
-            2,600 feet). Most deep-sea corals live on hard substrates on the seafloor, such as 
+            <p id='fz10'>Deep-sea corals occur throughout coastal-ocean waters in deeper and colder
+            habitats all over the world, starting at about 40 meters (about 130 feet) in depth, down
+            to about 3,000 meters (about 10,000 feet), but mostly between 300 and 800 meters (1,000 
+            and 2,600 feet). Most deep-sea corals live on hard substrates on the seafloor, such as 
             boulders and rocky outcrops.</p>  
             <br/>
-            <p>Unlike most tropical shallow-water species, deep-sea corals lack zooxanthellae, the 
-            symbiotic photosynthetic algae that produce food from sunlight, which is absent or 
+            <p id='fz10'>Unlike most tropical shallow-water species, deep-sea corals lack zooxanthellae, 
+            the symbiotic photosynthetic algae that produce food from sunlight, which is absent or 
             limited at the depths where deep-sea corals typically occur. So deep-sea corals feed by 
             waiting for plankton and organic material to flow past, and then use their stinging 
             cells to capture them. They need quite turbid areas with high currents to get enough food. 
             At night, coral polyps look like fragile flowers, but they are actually voracious 
             carnivores.</p>
             <br/>
-            <p>More than 3,300 species of deep-sea corals have been identified, and the numbers keep 
-            climbing as new species are continually being discovered. To learn more about different 
-            species, please visit 
+            <p id='fz10'>More than 3,300 species of deep-sea corals have been identified, and the 
+            numbers keep climbing as new species are continually being discovered. To learn more 
+            about different species, please visit 
             <a href='http://ocean.si.edu/slideshow/diversity-deep-sea-corals'>Diversity of Deep-Sea 
             Corals</a> </p>
         ")
-    })  
+    })   
     #####################          END What Are Deep-Sea Corals TAB              ###################      
     ################################################################################################     
 
@@ -165,47 +172,46 @@ shinyServer(function(input, output, session) {
     #####################                BEGIN Why We Care TAB                   ###################      
     output$text_gob2 <- renderUI({
         HTML("    
-            <h2>Why We Care?</h2>
-            <h4><i>Values of Deep-Sea Corals</i></h4>
+            <h2 id='fz20'>Why We Care?</h2>
+            <h4 id='fz15'><i>Values of Deep-Sea Corals</i></h4>
             <br/>
-            <p>The complex three-dimensional structure of some deep-sea corals creates habitat for 
-            diverse communities of invertebrates and fishes, including commercially valuable species 
-            such as rockfish, shrimp, and crab. Deep coral ecosystems are considered biodiversity 
-            hot spots and are sometimes called the rainforests of the sea because of the highly 
-            diverse and complex land environments they mirror.</p>    
+            <p id='fz10'>The complex three-dimensional structure of some deep-sea corals creates 
+            habitat for diverse communities of invertebrates and fishes, including commercially 
+            valuable species, such as rockfish, shrimp, and crab. Deep coral ecosystems are 
+            considered biodiversity hot spots and are sometimes called the rainforests of the sea 
+            because of the highly diverse and complex land environments they mirror.</p>    
             <br/>
-            <p>Some deep-sea corals may also be sources of compounds for the development of new 
-            drugs and medical treatments. Rencent research shows that they are a potential source 
-            of new antibiotics and anti-cancer chemicals.</p>
+            <p id='fz10'>Some deep-sea corals may also be sources of compounds for the development 
+            of new drugs and medical treatments. Rencent research shows that they are a potential 
+            source of new antibiotics and anti-cancer chemicals.</p>
         ")
     })
     
     output$text_gob3 <- renderUI({
         HTML('    
-            <h2>Why We Care?</h2>
-            <h4><i>Current Challenges</i></h4>
+            <h2 id="fz20">Why We Care?</h2>
+            <h4 id="fz15"><i>Current Challenges</i></h4>
             <br/>
-            <p>The remoteness and depth of deep-sea coral habitats does not protect them from human 
-            activity, especially as we use up coastal resources and move further offshore into 
-            deeper waters. Due to their exposed structure, slow growth and recruitment rates, 
+            <p id="fz10">The remoteness and depth of deep-sea coral habitats does not protect them 
+            from human activity. Due to their exposed structure, slow growth and recruitment rates, 
             deep-sea corals may be especially vulnerable to natural or human disturbance such as 
             bottom trawling, mineral extraction, and cable trenching - activities that result in 
             physical disruption of the seafloor. Animals in cold tend to grow slowly and live a 
             long time. Once damage occurs, recovery is extremely slow or may not happen at all.</p>
             <br/>
-            <p>Removing or damaging deep coral habitats can have impacts that resonate throughout the 
-            ocean. Destroying these complex habitats may harm or eliminate sources of food, shelter,
-            or spawning grounds for other animals and may even have implications for human health. 
-            Regulations to prevent physical damage cannot help with impacts from oil spills or 
-            climate change, which do not respect boundaries. With our planet changing quickly, it is 
-            increasingly important to protect entire ecosystems to maintain diversity and hopefully 
-            resilience into the future. </p>
+            <p id="fz10">Removing or damaging deep coral habitats can have impacts that resonate 
+            throughout the ocean. Destroying these complex habitats may harm or eliminate sources 
+            of food, shelter, or spawning grounds for other animals and may even have implications 
+            for human health. Regulations to prevent physical damage cannot help with impacts from 
+            oil spills or climate change, which do not respect boundaries. With our planet changing 
+            quickly, it is increasingly important to protect entire ecosystems to maintain diversity
+            and hopefully resilience into the future. </p>
             <br/>
-            <p>While we have known about cold-water corals for hundreds of years, aside from a few 
-            areas, they have been poorly studied. Science still has a long way to go before we 
-            really understand deep coral ecosystems. Many nations are beginning to recognize the 
-            value of deep-sea corals and take steps to manage and protect them. With the 
-            availability of new underwater survey technologies have come recent scientific surveys 
+            <p id="fz10">While we have known about cold-water corals for hundreds of years, aside 
+            from a few areas, they have been poorly studied. Science still has a long way to go 
+            before we really understand deep coral ecosystems. Many nations are beginning to 
+            recognize the value of deep-sea corals and take steps to manage and protect them. With 
+            the availability of new underwater survey technologies have come recent scientific surveys 
             and new opportunities to document more of these resources.</p>
         ')
     })    
@@ -275,30 +281,30 @@ shinyServer(function(input, output, session) {
     #####################              BEGIN Explore More TAB                    ###################      
     output$text_gob5 <- renderUI({
       HTML(' 
-          <h4>References and Other Suggested Readings</h4>
+          <h4 id="fz15">References and Other Suggested Readings</h4>
           <br/>
-          <a href="https://deepseacoraldata.noaa.gov/">
+          <a href="https://deepseacoraldata.noaa.gov/" id="fz10">
              NOAA Deep Sea Coral Research and Technology Program</a>
           <br/>
-          <a href="https://www.fisheries.noaa.gov/national/habitat-conservation/deep-sea-coral-habitat">
+          <a href="https://www.fisheries.noaa.gov/national/habitat-conservation/deep-sea-coral-habitat" id="fz10">
              NOAA Fisheries - Deep-Sea Coral Habitat</a>
           <br/>
-          <a href="http://oceanexplorer.noaa.gov/edu/themes/deep-sea-corals/">
+          <a href="http://oceanexplorer.noaa.gov/edu/themes/deep-sea-corals/" id="fz10">
              Ocean Explorer - Deep-Sea Corals</a>
           <br/>  
-          <a href="http://ocean.si.edu/deep-sea-corals">
+          <a href="http://ocean.si.edu/deep-sea-corals" id="fz10">
              The Ocean Portal - Deep-sea Corals</a>
           <br/>
-          <a href="https://marine-conservation.org/what-we-do/program-areas/coral-conservation/deep-sea-corals/">
+          <a href="https://marine-conservation.org/what-we-do/program-areas/coral-conservation/deep-sea-corals/" id="fz10">
              Marine Conservation Institute - Deep Sea Corals</a>
           <br/>
           <a href="https://www.coris.noaa.gov/activities/resourceCD/resources/deep_coral_bm.pdf">
              Oceana - Deep Sea Corals: Out of Sight, But No Longer Out of Mind</a>
           <br/>
-          <a href="https://oceantoday.noaa.gov/every-full-moon/full-moon-coralcomeback.html">
+          <a href="https://oceantoday.noaa.gov/every-full-moon/full-moon-coralcomeback.html" id="fz10">
              Ocean Today - Coral Comeback</a> 
           <br/>
-          <a href="http://www.pewtrusts.org/en/research-and-analysis/q-and-a/2018/01/why-we-need-to-protect-deep-sea-corals-now">
+          <a href="http://www.pewtrusts.org/en/research-and-analysis/q-and-a/2018/01/why-we-need-to-protect-deep-sea-corals-now" id="fz10">
              The PEW Charitable Trusts - Why We Need to Protect Deep Sea Corals Now</a>
       ')
     })        
