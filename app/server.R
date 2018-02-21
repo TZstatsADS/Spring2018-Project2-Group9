@@ -699,7 +699,10 @@ shinyServer(function(input, output, session) {
               type = 'scatter3d', mode = 'markers', color = ~sort(VernacularNameCategory), 
               data = data_coral,marker = list(size = 4)) %>% 
         layout(plot_bgcolor='black') %>% 
-        layout(paper_bgcolor='transparent')
+        layout(paper_bgcolor='transparent') %>%
+        layout(scene = list(xaxis = list(title="Fish Council"),
+                            yaxis = list(title="Category"),
+                            zaxis = list(title="Depth(m)")))
     })
     
     output$hist<- renderPlot({
@@ -708,7 +711,7 @@ shinyServer(function(input, output, session) {
       g + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                 panel.background = element_blank(), axis.line = element_line(colour = "black")) + 
         geom_histogram(aes(fill=Condition), bins=20, col="black", size=.1, alpha = 0.8) +
-        labs(title="Histogram of Depth")+
+        labs(title="Histogram of Depth" , x="Depth(m)", y="Number Amount")+
         theme(
           plot.title = element_text(size=20, face="bold",hjust = 0.5),
           axis.title.x = element_text(size=14, face="bold"),
@@ -726,7 +729,7 @@ shinyServer(function(input, output, session) {
       colors.pal <- brewer.pal(nrow(df), "Set2")
       lp <- pie3D(df$Freq,
                   radius=1.75, height=0.15, explode=0.1,
-                  main="Pie Chart of Coral Amount by Regions", col= colors.pal)
+                  main="Pie Chart of Amount by Regions", col= colors.pal)
       pie3D.labels(lp ,labels=myLabel,labelrad=2.5,minsep=1,labelcex = 1.2)
       
     })
